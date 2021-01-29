@@ -17,6 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
+@SuppressWarnings("serial")
 public class Prime extends JFrame {
 	JPanel painelUpdate;
 	Robot optimusPrime;
@@ -41,6 +42,7 @@ public class Prime extends JFrame {
 				try {
 					Prime frame = new Prime();
 					frame.setVisible(true);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -52,6 +54,7 @@ public class Prime extends JFrame {
 	 * Create the frame.
 	 */
 	public Prime() {
+
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 427, 330);
 		contentPane = new JPanel();
@@ -91,7 +94,7 @@ public class Prime extends JFrame {
 		lblNewLabel.setBounds(7, 157, 200, 25);
 		contentPane.add(lblNewLabel);
 
-		JLabel lblNewLabel_1 = new JLabel("Total de horas");
+		JLabel lblNewLabel_1 = new JLabel("Monitoramento Total");
 		lblNewLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 14));
 		lblNewLabel_1.setBounds(7, 7, 200, 14);
@@ -119,27 +122,20 @@ public class Prime extends JFrame {
 							min %= 60; // fica somente os minutos
 							contagemTempo.setText(String.format("%02d:%02d:%02d", hora, min, seg));// altera a label da
 																									// contagem de tempo
-
+							// monitoramento total
 							int seg2 = cont % 60;
 							int min2 = cont / 60;
 							int hora2 = min / 60;
 							min %= 60; // fica somente os minutos
 							horaTotal.setText(String.format("%02d:%02d:%02d", hora2, min2, seg2));// altera a label da
-																									
+
 							update.setText(String.format("%02d", contAtualiza));// quantidade de atualizaçoes
 
-							if (seg == 10) {
-
-								contador = 0;
-							}
-
-							if (seg == 9) {
+							if (hora == 1) {
 								try {
+									contador = 0;
 									contAtualiza++;
 									upateCrono();
-
-									
-
 								} catch (AWTException e) {
 									// TODO Auto-generated catch block
 									e.printStackTrace();
@@ -150,54 +146,7 @@ public class Prime extends JFrame {
 					}, 1000, 1000);
 					// TODO Auto-generated method stub
 				}
-				
-				if (!rodando) {
-					rodando = true;
-					tm = new Timer();
-					tm.scheduleAtFixedRate(new TimerTask() {
 
-						@Override
-						public void run() {
-							contador++;
-							cont++;
-
-							int seg = contador % 60;
-							int min = contador / 60;
-							int hora = min / 60;
-							min %= 60; // fica somente os minutos
-							contagemTempo.setText(String.format("%02d:%02d:%02d", hora, min, seg));// altera a label da
-																									// contagem de tempo
-
-							int seg2 = cont % 60;
-							int min2 = cont / 60;
-							int hora2 = min / 60;
-							min %= 60; // fica somente os minutos
-							horaTotal.setText(String.format("%02d:%02d:%02d", hora2, min2, seg2));// altera a label da
-																									
-							update.setText(String.format("%02d", contAtualiza));// quantidade de atualizaçoes
-
-							if (seg == 10) {
-
-								contador = 0;
-							}
-
-							if (seg == 9) {
-								try {
-									contAtualiza++;
-									upateCrono();
-
-									
-
-								} catch (AWTException e) {
-									// TODO Auto-generated catch block
-									e.printStackTrace();
-								}
-							}
-							;
-						}
-					}, 1000, 1000);
-					// TODO Auto-generated method stub
-				}
 			}
 		});
 
